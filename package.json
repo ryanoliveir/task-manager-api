@@ -1,0 +1,32 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanoliveir/todo-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ryanoliveir/todo-api/issues"
+  },
+  "homepage": "https://github.com/ryanoliveir/todo-api#readme",
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.4",
+    "@types/express": "^5.0.6",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^25.2.1",
+    "express": "^5.2.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "morgan": "^1.10.1"
+  }
+}
