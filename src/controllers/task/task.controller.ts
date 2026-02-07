@@ -1,3 +1,4 @@
+import { HttpError } from "../../errors/httpError"
 import taskService from "../../services/task/task.service"
 import type { Request, Response, NextFunction } from "express"
 
@@ -6,7 +7,7 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     const { title, description } = req.body
 
     if (!title || !description) {
-      throw new Error("Bad request")
+      throw new HttpError(400, "Bad request")
     }
 
     const task = await taskService.create({
