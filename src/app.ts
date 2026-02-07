@@ -1,14 +1,12 @@
 import express from "express"
-const app = express()
 import morgan from "morgan"
+import routes from "./routes"
+
+const app = express()
 
 app.use(morgan("dev"))
+app.use(express.json())
 
-app.get("/api/status", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    updated_at: new Date(),
-  })
-})
+app.use("/api", routes)
 
 export default app

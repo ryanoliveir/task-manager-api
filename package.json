@@ -15,6 +15,7 @@
     "prisma:migrations:apply": "prisma migrate dev",
     "prisma:migrations:status": "prisma migrate status",
     "prisma:migrations:deploy": "prisma migrate deploy",
+    "prisma:migrations:reset": "prisma migrate reset",
     "prisma:generate": "prisma generate",
     "test": "vitest run",
     "test:watch": "vitest",
