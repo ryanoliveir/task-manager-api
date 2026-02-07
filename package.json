@@ -10,7 +10,12 @@
     "lint:prettier:fix": "prettier --write .",
     "services:database:up": "docker compose -f infra/compose.yaml up -d",
     "services:database:stop": "docker compose -f infra/compose.yaml stop",
-    "services:database:down": "docker compose -f infra/compose.yaml down"
+    "services:database:down": "docker compose -f infra/compose.yaml down",
+    "prisma:migrations:create": "prisma migrate dev --create-only",
+    "prisma:migrations:apply": "prisma migrate dev",
+    "prisma:migrations:status": "prisma migrate status",
+    "prisma:migrations:deploy": "prisma migrate deploy",
+    "prisma:generate": "prisma generate"
   },
   "repository": {
     "type": "git",
@@ -30,17 +35,23 @@
     "@types/express": "^5.0.6",
     "@types/morgan": "^1.9.10",
     "@types/node": "^25.2.1",
+    "@types/pg": "^8.16.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "express": "^5.2.1",
     "globals": "^17.3.0",
     "jiti": "^2.6.1",
     "prettier": "^3.8.1",
+    "prisma": "^7.3.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0"
   },
   "dependencies": {
-    "morgan": "^1.10.1"
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "dotenv": "^17.2.4",
+    "morgan": "^1.10.1",
+    "pg": "^8.18.0"
   }
 }
