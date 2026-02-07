@@ -1,7 +1,6 @@
 import express from "express";
 const app = express();
 import morgan from "morgan";
-
 const port = 3000;
 
 app.use(morgan("dev"));
