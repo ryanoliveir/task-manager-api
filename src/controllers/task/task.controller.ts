@@ -23,3 +23,16 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     next(error)
   }
 }
+
+export async function list(req: Request, res: Response, next: NextFunction) {
+  try {
+    const tasks = await taskService.listAll()
+
+    return res.status(200).json({
+      status: "success",
+      data: tasks,
+    })
+  } catch (error) {
+    next(error)
+  }
+}

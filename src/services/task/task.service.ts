@@ -8,6 +8,10 @@ export class TaskService {
   async create(data: CreatedTaskData) {
     return await this.repository.create(data)
   }
+
+  async listAll() {
+    return await this.repository.listAll()
+  }
 }
 
 export default new TaskService()

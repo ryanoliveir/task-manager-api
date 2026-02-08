@@ -16,6 +16,10 @@ export class TaskRepository {
 
     return result
   }
+
+  async listAll(): Promise<Task[]> {
+    return await prisma.task.findMany()
+  }
 }
 
 export default new TaskRepository()
