@@ -13,7 +13,6 @@ describe("POST /api/tasks", () => {
         title: "Create a new endpoint",
         description: "Create a endpoint to introduce a new task",
       }
-
       const response = await request(app)
         .post("/api/tasks")
         .send(payload)
