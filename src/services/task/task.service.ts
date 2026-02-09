@@ -1,16 +1,15 @@
-import taskRespository, {
-  type CreatedTaskData,
-} from "../../repositories/task/task.repository"
+import taskRespository from "../../repositories/task/task.repository"
+import type { CreateTaskDto, TaskFilters } from "../../schemas/task.schema"
 
 export class TaskService {
   constructor(private repository = taskRespository) {}
 
-  async create(data: CreatedTaskData) {
+  async create(data: CreateTaskDto) {
     return await this.repository.create(data)
   }
 
-  async listAll() {
-    return await this.repository.listAll()
+  async listAll(filters?: TaskFilters) {
+    return await this.repository.listAll(filters)
   }
 }
 

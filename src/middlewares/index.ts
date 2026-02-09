@@ -14,6 +14,7 @@ export function errorHandler(
     return res.status(error.statusCode).json({
       status: "error",
       message: error.message,
+      ...(error.details && { details: error.details }),
     })
   }
 
