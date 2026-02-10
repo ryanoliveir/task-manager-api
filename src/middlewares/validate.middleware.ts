@@ -21,3 +21,38 @@ export function validatedBody(schema: ZodType) {
     next()
   }
 }
+
+export function validateQuery(schema: ZodType) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const result = schema.safeParse(req.query)
+
+    if (!result.success) {
+      const { fieldErrors, formErrors } = flattenError(result.error)
+
+      return next(
+        new HttpError(400, "Validation failed", {
+          fieldErrors,
+          ...(formErrors.length > 0 && { formErrors }),
+        }),
+      )
+    }
+
+    next()
+  }
+}
+
+export function validateParams(schema: ZodType) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const result = schema.safeParse(req.query)
+
+    if (!result.success) {
+      const { fieldErrors, formErrors } = flattenError(result.error)
+      new HttpError(400, "Validation failed", {
+        fieldErrors,
+        ...(formErrors.length > 0 && { formErrors }),
+      })
+    }
+
+    next()
+  }
+}

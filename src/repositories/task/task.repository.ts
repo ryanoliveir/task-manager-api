@@ -1,6 +1,11 @@
 import prisma from "../../lib/prisma"
 import type { Prisma, Task } from "../../../generated/prisma/client"
-import type { CreateTaskDto, TaskFilters } from "../../schemas/task.schema"
+import type {
+  CreateTaskDto,
+  TaskFilters,
+  UpdatePartialTask,
+  UpdateTask,
+} from "../../schemas/task.schema"
 
 export class TaskRepository {
   async create(data: CreateTaskDto): Promise<Task> {
@@ -50,6 +55,28 @@ export class TaskRepository {
       orderBy: {
         createdAt: "desc",
       },
+    })
+  }
+
+  async getById(taskId: number) {
+    return await prisma.task.findUnique({
+      where: {
+        id: taskId,
+      },
+    })
+  }
+
+  async replace(taskId: number, data: UpdateTask) {
+    return await prisma.task.update({
+      where: { id: taskId },
+      data,
+    })
+  }
+
+  async update(taskId: number, data: UpdatePartialTask) {
+    return await prisma.task.update({
+      where: { id: taskId },
+      data,
     })
   }
 }
