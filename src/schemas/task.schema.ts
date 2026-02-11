@@ -26,7 +26,7 @@ export const taskUpdateSchema = z
   .object({
     title: z.string(),
     description: z.string(),
-    completedAt: z.iso.datetime(),
+    completedAt: z.iso.datetime().nullable(),
   })
   .strict()
 
