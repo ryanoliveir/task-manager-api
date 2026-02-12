@@ -88,3 +88,15 @@ export async function replace(req: Request, res: Response, next: NextFunction) {
     next(error)
   }
 }
+
+export async function remove(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = taskIdSchema.parse(req.params)
+
+    await taskService.delete(id)
+
+    return res.status(204).end()
+  } catch (error) {
+    next(error)
+  }
+}

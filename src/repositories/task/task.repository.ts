@@ -79,6 +79,14 @@ export class TaskRepository {
       data,
     })
   }
+
+  async delete(taskId: number) {
+    await prisma.task.delete({
+      where: {
+        id: taskId,
+      },
+    })
+  }
 }
 
 export default new TaskRepository()

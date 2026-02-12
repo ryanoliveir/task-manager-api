@@ -29,5 +29,6 @@ router.put(
   validatedBody(taskUpdateSchema),
   taskController.replace,
 )
+router.delete("/:id", validateParams(taskIdSchema), taskController.remove)
 
 export default router

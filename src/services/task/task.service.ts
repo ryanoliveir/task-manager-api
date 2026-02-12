@@ -41,6 +41,14 @@ export class TaskService {
 
     return this.repository.replace(taskId, data)
   }
+
+  async delete(taskId: number) {
+    const task = await this.repository.getById(taskId)
+
+    if (!task) throw new HttpError(404, "Task not found")
+
+    return await this.repository.delete(taskId)
+  }
 }
 
 export default new TaskService()
