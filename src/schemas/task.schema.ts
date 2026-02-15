@@ -36,11 +36,17 @@ export const taskUpdatePartialSchema = z
     title: z.string().optional(),
     description: z.string().optional(),
     completedAt: z.iso.datetime().optional(),
+    complete: z.boolean().optional(),
   })
   .strict()
+
+export const taskUpdateStatus = z.strictObject({
+  complete: z.boolean(),
+})
 
 export type CreateTaskDto = z.infer<typeof createTaskSchema>
 export type UpdateTask = z.infer<typeof taskUpdateSchema>
 export type UpdatePartialTask = z.infer<typeof taskUpdatePartialSchema>
 export type TaskFilters = z.infer<typeof taskFiltersSchema>
 export type TaskId = z.infer<typeof taskIdSchema>
+export type TaskUpdateStatus = z.infer<typeof taskUpdateStatus>

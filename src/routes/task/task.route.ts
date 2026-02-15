@@ -11,6 +11,7 @@ import {
   taskIdSchema,
   taskUpdatePartialSchema,
   taskUpdateSchema,
+  taskUpdateStatus,
 } from "../../schemas/task.schema"
 const router = Router()
 
@@ -21,6 +22,11 @@ router.patch(
   "/:id",
   validateParams(taskIdSchema),
   validatedBody(taskUpdatePartialSchema),
+  taskController.update,
+)
+router.patch(
+  "/:id/complete",
+  validatedBody(taskUpdateStatus),
   taskController.update,
 )
 router.put(
