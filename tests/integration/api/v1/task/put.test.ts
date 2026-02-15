@@ -33,6 +33,7 @@ describe("PUT /api/tasks/:id", () => {
           title: "task 1 updated",
           description: "Introduce a new task 1 updated",
           completedAt: new Date().toISOString(),
+          complete: false,
         }
 
         const response = await request(app)
@@ -63,12 +64,13 @@ describe("PUT /api/tasks/:id", () => {
           title: "task 1 updated",
           description: "Introduce a new task 1 updated",
           completedAt: null,
+          complete: false,
         }
 
         const response = await request(app)
           .put(`/api/tasks/${id}`)
           .send(updatedTask)
-
+        console.log(response.body)
         expect(response.status).toBe(200)
         expect(response.body.data).toBeDefined()
         expect(response.body.data.completedAt).toBe(null)
@@ -87,6 +89,7 @@ describe("PUT /api/tasks/:id", () => {
           title: "Updated title",
           description: "Updated description",
           completedAt: null,
+          complete: false,
         }
 
         const response = await request(app)
@@ -215,6 +218,38 @@ describe("PUT /api/tasks/:id", () => {
         expect(response.body.message).toBe("Validation failed")
 
         expect(response.body.details.fieldErrors).toHaveProperty("completedAt")
+      })
+
+      test("should return 400 when complete is empty", async () => {
+        const initialTask = {
+          title: "Task Initial",
+          description: "Introduce a new task",
+        }
+
+        const createResponse = await request(app)
+          .post("/api/tasks")
+          .send(initialTask)
+
+        const { id } = createResponse.body.data
+
+        const updatedTaskWithoutComplete = {
+          title: "task 1 updated",
+          description: "Introduce a new task",
+          completedAt: new Date().toISOString(),
+        }
+
+        const response = await request(app)
+          .put(`/api/tasks/${id}`)
+          .send(updatedTaskWithoutComplete)
+
+        expect(response.status).toBe(400)
+        expect(response.body).toBeDefined()
+        expect(response.body.status).toBeDefined()
+        expect(response.body.status).toBe("error")
+        expect(response.body.message).toBeDefined()
+        expect(response.body.message).toBe("Validation failed")
+
+        expect(response.body.details.fieldErrors).toHaveProperty("complete")
       })
       // test("should return 400 when completedAt is invalid data format", async () => {})
     })
