@@ -20,7 +20,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:vitest:ui": "vitest --ui",
-    "seed:tasks": "tsx prisma/seeds/tasks.seed.ts"
+    "seed:tasks": "tsx prisma/seeds/tasks.seed.ts",
+    "generate:tasks:file": "tsx src/scripts/generate.tasks.csv.ts"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "@tsconfig/node24": "^24.0.4",
     "@types/express": "^5.0.6",
     "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.0.0",
     "@types/node": "^25.2.1",
     "@types/pg": "^8.16.0",
     "@types/supertest": "^6.0.3",
@@ -60,8 +62,10 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
+    "csv-parser": "^3.2.0",
     "dotenv": "^17.2.4",
     "morgan": "^1.10.1",
+    "multer": "^2.0.2",
     "pg": "^8.18.0",
     "zod": "^4.3.6"
   }
