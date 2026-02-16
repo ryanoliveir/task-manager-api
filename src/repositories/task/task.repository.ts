@@ -18,6 +18,13 @@ export class TaskRepository {
     return result
   }
 
+  async createMany(data: CreateTaskDto[]): Promise<Task[]> {
+    return await prisma.task.createManyAndReturn({
+      data: data,
+      skipDuplicates: false,
+    })
+  }
+
   async listAll(filters?: TaskFilters): Promise<Task[]> {
     const where: Prisma.TaskWhereInput = {}
 
