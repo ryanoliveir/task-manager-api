@@ -13,6 +13,9 @@ import {
   taskUpdateSchema,
   taskUpdateStatus,
 } from "../../schemas/task.schema"
+import * as importController from "../../controllers/task/import.controller"
+import { upload } from "../../lib/multer"
+
 const router = Router()
 
 router.post("/", validatedBody(createTaskSchema), taskController.create)
@@ -36,5 +39,7 @@ router.put(
   taskController.replace,
 )
 router.delete("/:id", validateParams(taskIdSchema), taskController.remove)
+
+router.post("/import", upload.single("file"), importController.importCsv)
 
 export default router
