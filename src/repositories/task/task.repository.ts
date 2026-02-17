@@ -42,8 +42,6 @@ export class TaskRepository {
       }
     }
 
-    console.log(where)
-
     return await prisma.task.findMany({
       where: {
         ...(filters?.title && {

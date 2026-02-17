@@ -7,6 +7,7 @@ import {
 } from "../../middlewares/validate.middleware"
 import {
   createTaskSchema,
+  exportQuerySchema,
   taskFiltersSchema,
   taskIdSchema,
   taskUpdatePartialSchema,
@@ -14,12 +15,19 @@ import {
   taskUpdateStatus,
 } from "../../schemas/task.schema"
 import * as importController from "../../controllers/task/import.controller"
+import * as exportControler from "../../controllers/task/export.controller"
 import { upload } from "../../lib/multer"
 
 const router = Router()
 
 router.post("/", validatedBody(createTaskSchema), taskController.create)
 router.get("/", validateQuery(taskFiltersSchema), taskController.list)
+router.get(
+  "/export",
+  validateQuery(exportQuerySchema),
+  exportControler.exportPDF,
+)
+
 router.get("/:id", validateParams(taskIdSchema), taskController.getById)
 router.patch(
   "/:id",

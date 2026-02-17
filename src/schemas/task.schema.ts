@@ -44,9 +44,18 @@ export const taskUpdateStatus = z.strictObject({
   complete: z.boolean(),
 })
 
+export const exportFormatSchema = z.strictObject({
+  format: z.enum(["csv", "pdf"]),
+})
+
+export const exportQuerySchema = taskFiltersSchema.extend(
+  exportFormatSchema.shape,
+)
+
 export type CreateTaskDto = z.infer<typeof createTaskSchema>
 export type UpdateTask = z.infer<typeof taskUpdateSchema>
 export type UpdatePartialTask = z.infer<typeof taskUpdatePartialSchema>
 export type TaskFilters = z.infer<typeof taskFiltersSchema>
 export type TaskId = z.infer<typeof taskIdSchema>
 export type TaskUpdateStatus = z.infer<typeof taskUpdateStatus>
+export type exportFormatQuery = z.infer<typeof exportQuerySchema>
